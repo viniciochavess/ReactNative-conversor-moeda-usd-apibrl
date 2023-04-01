@@ -58,11 +58,13 @@ export  default  function App() {
     if(cotacao == ''){
       fetch('https://economia.awesomeapi.com.br/last/USD-BRL')
       .then((response)=> response.json())
-      .then((json)=>{return (setvalue2(String(Number(json.USDBRL.ask))))})
+      .then((json)=>{
+         (setvalue2(String(Number(json.USDBRL.ask))))
+          setCotacao1(String(Number(json.USDBRL.ask)))
+        })
       .then(()=>{setCotacao(value2)})
       .catch(()=>{'0'})
    
-       console.log('teste')
   
      }
    
@@ -91,7 +93,8 @@ export  default  function App() {
        </TouchableOpacity>
  
        <Text style={styles.result}>{result}</Text>
-       <Text>{cotacao == ''? "Sem acesso a internet": cotacao }</Text>
+       <Text>{cotacao == ''? "Sem acesso a internet": value2 }</Text>
+       <Text>" economia.awesomeapi.com.br/last/USD-BRL"</Text>
        <StatusBar style="auto" />
      </View>
    )
@@ -114,7 +117,8 @@ export  default  function App() {
       </TouchableOpacity>
 
       <Text style={styles.result}>{result}</Text>
-      <Text>{cotacao == ''? "Sem acesso a internet": "Cotação Atual: "+ Number(cotacao).toFixed(2) }</Text>
+      <Text>{cotacao == ''? "Sem acesso a internet": "Cotação Atual: "+"R$: " +Number(cotacao1).toFixed(2) }</Text>
+      <Text> economia.awesomeapi.com.br</Text>
       <StatusBar style="auto" />
     </View>
   )
